@@ -1,0 +1,97 @@
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.75rem 0.85rem;
+  /* Size to content so the empty-state / simulator below sits flush against
+     it instead of being pushed to the bottom of the column. With many
+     cameras the inner .list scrolls. */
+  flex: 0 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  max-height: 60vh;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.head h2 {
+  margin: 0;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.refresh {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 0.3rem;
+}
+
+.refresh:hover {
+  border-color: var(--accent);
+}
+
+.empty {
+  color: var(--muted);
+  font-size: 0.85rem;
+  padding: 0.5rem 0;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.item,
+.itemActive {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text);
+  padding: 0.5rem 0.6rem;
+  border-radius: 0.4rem;
+}
+
+.item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.itemActive {
+  background: rgba(56, 189, 248, 0.12);
+  border-color: var(--accent);
+}
+
+.itemName {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.itemSub {
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin-top: 0.1rem;
+}
+
+.itemSub code {
+  background: var(--bg);
+  padding: 0 0.2rem;
+  border-radius: 0.2rem;
+}

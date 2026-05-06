@@ -1,0 +1,120 @@
+.shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel);
+  flex-shrink: 0;
+}
+
+.header h1 {
+  font-size: 0.95rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.badge {
+  background: var(--accent-2);
+  color: var(--bg);
+  padding: 0.1rem 0.5rem;
+  border-radius: 0.75rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.logoutBtn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.25rem 0.7rem;
+  border-radius: 0.3rem;
+  font-size: 0.75rem;
+}
+
+.logoutBtn:hover {
+  border-color: var(--accent);
+}
+
+/* Three columns split by responsibility:
+   - LEFT (input): register camera + camera list + simulate buttons
+   - CENTER (visualization): the request flow diagram
+   - RIGHT (output): recent events table + alerts feed
+   The right column gets the widest fixed allocation because event_id_client
+   UUIDs and alert metadata need horizontal room. The center is flexible
+   between the two so the diagram scales to whatever space remains. */
+.main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 380px minmax(0, 1fr) 600px;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.colInput,
+.colDiagram,
+.colOutput {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.colDiagram {
+  /* Diagram sizes to its container; no extra scroll inside. */
+  overflow: hidden;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  text-align: center;
+  color: var(--muted);
+  background: var(--panel);
+  border: 1px dashed var(--border);
+  border-radius: 0.5rem;
+  padding: 1.5rem 1.25rem;
+  font-size: 0.85rem;
+}
+
+.empty strong {
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+@media (max-width: 1280px) {
+  .main {
+    grid-template-columns: 320px minmax(0, 1fr) 520px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .main {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+}

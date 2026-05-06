@@ -1,0 +1,141 @@
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  flex-shrink: 0;
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.headText {
+  flex: 1;
+  min-width: 0;
+}
+
+.head h2 {
+  margin: 0 0 0.2rem;
+  font-size: 1rem;
+}
+
+.closeBtn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  line-height: 1;
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.closeBtn:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+  align-items: center;
+}
+
+.meta code {
+  background: var(--bg);
+  padding: 0 0.2rem;
+  border-radius: 0.2rem;
+}
+
+.simulator {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  padding: 0.7rem 0.85rem;
+}
+
+.simulator h3 {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.simHint {
+  margin: 0 0 0.6rem;
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.simHint code,
+.simHint em {
+  color: var(--text);
+  font-style: normal;
+}
+
+.simHint code {
+  background: var(--bg);
+  padding: 0 0.2rem;
+  border-radius: 0.2rem;
+}
+
+.simButtons {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.btnPrimary {
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  padding: 0.45rem 0.7rem;
+  border-radius: 0.3rem;
+  font-weight: 600;
+  font-size: 0.78rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.btnSecondary {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 0.45rem 0.7rem;
+  border-radius: 0.3rem;
+  font-size: 0.78rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.btnSecondary:disabled {
+  border-color: var(--border);
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
+.simStatus {
+  margin-top: 0.6rem;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.72rem;
+  background: var(--bg);
+  padding: 0.45rem 0.6rem;
+  border-radius: 0.3rem;
+  color: var(--success);
+  line-height: 1.4;
+  word-break: break-word;
+}

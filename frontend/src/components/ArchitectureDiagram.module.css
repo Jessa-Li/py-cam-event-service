@@ -1,0 +1,133 @@
+.wrap {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  flex: 1;
+  min-height: 0;
+}
+
+.title {
+  margin: 0;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.svgWrap {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  background: var(--bg);
+  border-radius: 0.4rem;
+  padding: 1rem;
+}
+
+.svg {
+  width: 100%;
+  height: 100%;
+}
+
+.node {
+  fill: var(--panel-2);
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
+/* Dashed border = "inline today, separate service in the cloud roadmap" */
+.nodeDashed {
+  fill: var(--panel-2);
+  stroke: var(--accent-2);
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+  opacity: 0.85;
+}
+
+.edgeGhost {
+  stroke: transparent;
+}
+
+.nodeLabel {
+  fill: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.nodeSub {
+  fill: var(--muted);
+  font-size: 9px;
+}
+
+.edge {
+  stroke: var(--muted);
+  stroke-width: 1.5;
+  transition: stroke 0.2s, stroke-width 0.2s;
+}
+
+.edgeActive {
+  stroke: var(--accent);
+  stroke-width: 3;
+  filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.7));
+}
+
+.edgeLabel {
+  fill: var(--muted);
+  font-size: 9px;
+}
+
+.detail {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  padding: 0.85rem 1rem;
+  font-size: 0.82rem;
+  flex-shrink: 0;
+  min-height: 7rem;
+}
+
+.detailHead {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.55rem;
+}
+
+.method {
+  background: var(--accent);
+  color: var(--bg);
+  padding: 0.1rem 0.45rem;
+  border-radius: 0.2rem;
+  font-weight: 700;
+  font-size: 0.72rem;
+}
+
+.detailHead code {
+  background: var(--bg);
+  padding: 0.12rem 0.35rem;
+  border-radius: 0.2rem;
+  font-size: 0.82rem;
+}
+
+.flowList {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.flowList li {
+  list-style: decimal;
+}
+
+.detailEmpty {
+  color: var(--muted);
+  line-height: 1.5;
+}
