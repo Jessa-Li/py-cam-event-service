@@ -1,0 +1,85 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: cameras
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d cameras"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  jaeger:
+    image: jaegertracing/jaeger:2.17.0
+    ports:
+      - "16686:16686"   # Jaeger UI
+      - "4317:4317"     # OTLP gRPC
+      - "4318:4318"     # OTLP HTTP
+      - "5778:5778"     # sampling/config
+      - "9411:9411"     # Zipkin compat
+
+  backend:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8080"
+    environment:
+      FLASK_APP: wsgi.py
+      FLASK_ENV: development
+      DATABASE_URL: postgresql+psycopg://postgres:postgres@postgres:5432/cameras
+      REDIS_URL: redis://redis:6379/0
+      SECRET_KEY: dev-only-change-me
+      JWT_SECRET_TOKEN: dev-only-change-me
+      ADMIN_EMAIL: admin@example.com
+      ADMIN_PASSWORD: admin
+      # OpenTelemetry → Jaeger (OTLP/HTTP on 4318)
+      OTEL_SERVICE_NAME: cam-event-service
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4318
+      OTEL_EXPORTER_OTLP_PROTOCOL: http/protobuf
+      OTEL_TRACES_SAMPLER: parentbased_always_on
+    command: >
+      sh -c "flask db upgrade &&
+             flask seed-admin &&
+             flask run --host=0.0.0.0 --port=8080 --debug"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      jaeger:
+        condition: service_started
+
+  frontend:
+    build: ./frontend
+    volumes:
+      # Bind-mount the source for live reload, but use an anonymous volume
+      # for node_modules so the host's (likely empty) one doesn't shadow
+      # the deps the container installed at build time.
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_BACKEND_URL: http://backend:8080
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
